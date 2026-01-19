@@ -29,8 +29,8 @@ If you find our work or code useful for your research, please consider citing:
 
 ```bibtex
 @article{li2026frankenmotion,
-  title={FrankenMotion: Part-level Human Motion Generation and Composition},
+  title={{FrankenMotion}: Part-level Human Motion Generation and Composition},
   author={Li, Chuqiao and Xie, Xianghui and Cao, Yong and Geiger, Andreas and Pons-Moll, Gerard},
-  journal={arXiv preprint},
+  journal={arXiv preprint arXiv:2601.10909},
   year={2026}
 }
