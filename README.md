@@ -11,9 +11,10 @@ This is the official repository for **FrankenMotion**.
 
 ## 🚀 News
 - **[Jan 2026]** Our paper has been submitted to arXiv!
+- **[Feb 2026]** FrankenMotion is accepted at CVPR 2026, see you in Denver!
 - **[Coming Soon]** We will release the full code, pre-trained models, and the **Frankenstein Dataset**. 
 - **⭐ Star us** to get notified when the code is released!
-- **[Feb 2026]** FrankenMotion is accepted at CVPR 2026, see you in Denver!
+
 
 ## 📦 Content to be Released
 - [ ] **Core Code**: Training and inference pipeline.
