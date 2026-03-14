@@ -2,7 +2,7 @@
 
 <p align="center">
   <a href="https://coral79.github.io/frankenmotion/"><b>[🌐 Project Page]</b></a>
-  <a href="https://arxiv.org/abs/2601.XXXXX"><b>[📄 Paper]</b></a>
+  <a href="https://arxiv.org/abs/2601.10909"><b>[📄 Paper]</b></a>
 </p>
 
 This is the official repository for **FrankenMotion**. 
@@ -26,6 +26,12 @@ Human motion generation from text prompts has made remarkable progress in recent
 
 In this work, we construct a high-quality motion dataset with atomic, temporally-aware part-level text annotations, leveraging the reasoning capabilities of large language models (LLMs). Unlike prior datasets, our dataset captures asynchronous and semantically distinct part movements at fine temporal resolution. Based on this dataset, we introduce **FrankenMotion**, a diffusion-based part-aware motion generation framework where each body part is guided by its own temporally-structured textual prompt. Experiments demonstrate that FrankenMotion outperforms previous baseline models and can compose motions unseen during training.
 
+## 👀 You Might Also Like
+
+Also check out our arXiv 2026 paper 🎯 **[ActionPlan](https://coral79.github.io/ActionPlan/)** — future-aware streaming motion synthesis via frame-level action planning, enabling real-time generation **5.25× faster** with better quality.
+
+---
+
 ## ✍️ Citation
 If you find our work or code useful for your research, please consider citing:
 
@@ -36,3 +42,10 @@ If you find our work or code useful for your research, please consider citing:
   journal={arXiv preprint arXiv:2601.10909},
   year={2026}
 }
+```
+
+---
+
+## ⭐ Star History
+
+[![Star History Chart](https://api.star-history.com/svg?repos=Coral79/FrankenMotion-Code&type=Date)](https://star-history.com/#Coral79/FrankenMotion-Code&Date)
