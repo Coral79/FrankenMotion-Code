@@ -66,7 +66,7 @@ def mirror_smpl(
         if motion_path.startswith("M"):
             continue
 
-        data = {x: y for x, y in np.load(motion_path).items()}
+        data = {x: y for x, y in np.load(motion_path, allow_pickle=True).items()}
 
         # process sequences
         poses = torch.from_numpy(data["poses"])

@@ -1,0 +1,16 @@
+{
+  "ACCAD/Female1General_c3d/A1 - Stand_poses": {
+    "duration": 3.0,
+    "annotations": [
+      {"seg_id": "babel_10890_seq_0", "babel_id": "10890", "text": "stand still", "start": 0.0, "end": 3.0},
+      {"seg_id": "humanml3d_004501_0", "text": "person stands facing forward", "start": 0.0, "end": 3.0}
+    ]
+  },
+  "ACCAD/Male1Walking_c3d/Walk_poses": {
+    "duration": 5.0,
+    "annotations": [
+      {"seg_id": "babel_2345_seq_0", "babel_id": "2345", "text": "walk forward", "start": 0.0, "end": 5.0},
+      {"seg_id": "humanml3d_002221_0", "text": "a person walks straight forward", "start": 0.0, "end": 5.0}
+    ]
+  }
+}

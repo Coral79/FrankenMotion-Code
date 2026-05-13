@@ -1,0 +1,21 @@
+defaults:
+  - joints_renderer: matplotlib
+  - smpl_renderer: humor
+  - defaults
+  - _self_
+
+run_dir: pretrained/frankenmotion
+ckpt: frankenmotion
+
+input_type: test            # val | test
+num_runs: 20                # how many sampling passes (paper: 20)
+video_samples_per_run: 2    # SMPL/joint videos per run (0 disables rendering entirely)
+
+fast: false                 # when true, skip SMPL video rendering
+gender: male
+guidance: 1.0
+baseline: none              # purely a naming suffix on the output folder
+
+seed: -1                    # -1 leaves torch/pl seeding alone; otherwise seed+run_idx*1000 per run
+device: cuda
+value_from: smpl

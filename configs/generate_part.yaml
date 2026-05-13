@@ -1,0 +1,30 @@
+defaults:
+  - joints_renderer: matplotlib
+  - smpl_renderer: humor
+  - defaults
+  - _self_
+
+run_dir: pretrained/frankenmotion
+ckpt: frankenmotion
+
+input_type: val
+num_sample: 10
+
+# `fast=true` renders only the first 2 SMPL videos for a quick preview;
+# the diffusion sampler still runs for all `num_sample` (raw .npy/.npz are saved).
+fast: false
+
+gender: male
+guidance: 1.0
+baseline: none
+device: cuda
+value_from: smpl
+
+# `user_input_file` is consumed only when `input_type=user_input`. Path to a JSON
+# describing the motion to generate (see `test_inputs/walking_wave.json` for the schema).
+# Leave as ??? so Hydra errors loudly if `input_type=user_input` is set without it.
+user_input_file: ???
+
+# `timeline` is consumed only by the user_input / (future) timeline branches.
+# Leave as ??? so Hydra errors loudly if a branch tries to use it without being set.
+timeline: ???

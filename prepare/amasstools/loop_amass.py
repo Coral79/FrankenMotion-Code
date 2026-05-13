@@ -17,7 +17,10 @@ def loop_amams(
     if only_mirror:
         match_str = f"M2/**/*{ext}"
 
-    for motion_file in tqdm(glob(match_str, root_dir=base_folder, recursive=True)):
+    abs_pattern = os.path.join(base_folder, match_str)
+    prefix_len = len(base_folder.rstrip(os.sep)) + 1
+    motion_files = [p[prefix_len:] for p in glob(abs_pattern, recursive=True)]
+    for motion_file in tqdm(motion_files):
         if exclude and exclude in motion_file:
             continue
 

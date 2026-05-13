@@ -1,0 +1,55 @@
+# @package __global__
+
+data:
+  _target_: src.data.text_motion.TextMotionDataset_Part
+
+  name: ${dataset}
+
+  split: train
+  min_seconds: 1.0
+  max_seconds: 20.0
+  preload: true
+  tiny: false
+  # dropping data
+  drop_motion_perc: 0
+  drop_cond: 0.1
+  drop_trans: 0
+  condition: t2m
+  annotation: annotations.json
+
+diffusion:
+  _target_: src.model.gaussian.GaussianDiffusion
+  g_text: True
+  loss_type: WeightedMSE
+
+  denoiser:
+    _target_: src.model.backbones.mdm_smpl_part.TransformerDenoiser
+    nfeats: 613
+    tx_dim: ${data.text_encoder.nfeats}
+    latent_dim: 512
+    ff_size: 2048
+    num_layers: 4
+    num_heads: 8
+    dropout: 0.1
+    activation: gelu
+    nb_registers: 0
+
+  schedule:
+    _target_: src.model.schedule.cosine.CosineBetaSchedule
+    s: 0.008
+
+  motion_normalizer:
+    _target_: src.normalizer.Normalizer
+    base_dir: ${run_dir}/motion_stats
+    eps: 1e-12
+
+  text_normalizer:
+    _target_: src.normalizer.Normalizer
+    base_dir: ${run_dir}/text_stats
+    eps: 1e-12
+
+  timesteps: 100
+  prediction: x
+
+  # learning rate
+  lr: 1e-4

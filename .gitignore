@@ -1,0 +1,46 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+*.egg
+build/
+dist/
+.pytest_cache/
+.mypy_cache/
+
+# Virtual envs (users create their own; see environment.yml)
+.venv/
+venv/
+env/
+
+# OS / editor cruft
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+*.swp
+*~
+.ipynb_checkpoints/
+
+# Pretrained checkpoints are downloaded from HuggingFace by users; do not commit
+pretrained/
+
+# Hydra/training outputs
+outputs/
+outputs_amass/
+logs/
+slurm-*.out
+nohup.out
+*.log
+wandb/
+
+# Dataset content (users download AMASS separately; annotations from HF)
+datasets/
+deps
+deps/
+
+# Secrets / env files — never commit
+.env
+.env.*
+*.key
+*.pem

@@ -1,3 +1,5 @@
+from typing import Union
+
 from torch import FloatTensor, LongTensor, Tensor, Size, lerp, zeros_like
 from torch.linalg import norm
 
@@ -20,7 +22,7 @@ from torch.linalg import norm
 #   - this makes it interface-compatible with lerp()
 
 
-def slerp(v0: FloatTensor, v1: FloatTensor, t: float | FloatTensor, DOT_THRESHOLD=0.9995):
+def slerp(v0: FloatTensor, v1: FloatTensor, t: Union[float, FloatTensor], DOT_THRESHOLD=0.9995):
     '''
     Spherical linear interpolation
     Args:

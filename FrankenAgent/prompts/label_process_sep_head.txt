@@ -1,0 +1,132 @@
+# Body Part Motion Annotation Task
+
+## Goal
+
+Create detailed body part-level annotations for the entire motion sequence using the provided BABEL and HumanML3D/KITML annotations. This task breaks down whole-body motion descriptions into specific body part movements.
+
+## What to Annotate
+
+* **Left arm:** Movements specific to the left arm, hand, and shoulder (e.g., wave arm)
+* **Right arm:** Movements specific to the right arm, hand, and shoulder (e.g., wave arm)
+* **Left leg:** Movements specific to the left leg, foot, and hip (e.g., stand, kick, jump)
+* **Right leg:** Movements specific to the right leg, foot, and hip (e.g., stand, kick, jump)
+* **Spine:** Trunk flex/extend, side-bend, twist, posture. 
+* **Head:** Look left/right/down, turn left/right, nod, tilt
+* **Trajectory:** Center of mass movement through space (e.g., forward/backward, left/right, circular path, zigzag, vertical up and down, downward/rise up, stationary on ground, turn left/right)
+* **Action:** Atomic, Segment-level overall body activities and movements (e.g., "jumping jacks", "waltz dance", "playing golf", "cartwheel") 
+* **Sequence caption:** Produce a concise caption that describes the entire process across the clip. Follow the style shown in examples; don’t add details beyond the source.
+
+## Core Principles
+
+* Accuracy over completeness: It is better to use **"unknown"** than to guess incorrectly
+* Do NOT add details that aren't explicitly inferred from the source annotations
+* Never infer specific directions (forward/backward/sideways) unless explicitly stated
+* Preserve all information: Include all actions mentioned for each body part
+* Effector verbs are explicit: If a verb clearly implies the acting body part (e.g., push/press → arms; step/squat → legs; bend/twist → spine; look/nod → head; turn/rise/down → trajectory), label that part with confidence 5.
+
+## Process
+
+1. **Primary** – BABEL annotations (`babel_seg_X`) for timestamps
+2. **Secondary** – HumanML3D/KITML for added context
+3. When no KITML/HumanML3D is available: rely on BABEL and mark **"unknown"** when uncertain
+4. For gaps: if a movement cannot be reasonably inferred, use **"unknown"** with **confidence 1**
+
+## Important Rules
+
+* Cover the entire duration with **no gaps** for each body part
+* Extract the relevant portion of text for each body part when annotations describe multiple body parts
+* Never use **"transition"** — describe what each body part is actually doing or use **"unknown"**
+* For complex activities (dances, sports, exercises), separate specific limb actions from the overall **Action** category
+* Always include **ALL** actions when multiple are mentioned for the same body part (e.g., "lean forward" **and** "head bobbing")
+* Use specific descriptions rather than vague terms (e.g., "spine upright" not "dance stance")
+
+## Bilateral Limb Annotation Guidelines
+
+1. **Explicitly Different Actions:**
+
+   * If left vs. right differ, assign the specific description to each.
+2. **Ambiguous Limb References:**
+
+   * If side is not specified, apply the same label to **both** limbs.
+3. **Whole Body Movements:**
+
+   * Decompose into part actions; put the overall description in **Action**; use exact BABEL wording when available.
+4. **Single Active Limb:**
+
+   * If only one limb is mentioned, annotate it; set the other limb to **"unknown"**.
+
+## Confidence Scoring
+
+* **5:** Explicitly mentioned in source annotations with clear description
+* **4:** Strongly implied by source or confirmed by multiple sources
+* **If confidence would be < 4:** set `text: "unknown"` and `confidence: 1`
+
+## Special Cases and Common Mistakes to Avoid
+
+1. **Static postures:** Describe specific positions (e.g., "arm hanging by side"), not "static"
+2. **Never add details not in source:**
+
+   * No added directions (don’t change "walking" to "walking forward")
+   * No guessing which limb performs an action
+   * No guessing timing when not specified
+3. **Be specific and complete:**
+
+   * Use precise terms (e.g., "spine upright")
+   * Include **ALL** actions mentioned for each body part
+   * For repetitive movements, summarize clearly
+4. **Classify correctly:**
+
+   * Assign turning/standing movements primarily to **legs** (unless explicitly head/torso)
+   * For whole-body poses (e.g., "touching ground", "bridge pose"), describe each involved body part rather than assigning to one category
+   * If only "kick" is given without side, assign to **both legs** (see Ambiguous Limb References)
+
+## Output Format
+
+```json
+{
+    "annotations": {
+    "sequence_caption": [
+      {
+        "text": "a person laying face down on the ground and then slowly crawling backwards",
+        "start": 0.0,
+        "end": 4.367,
+        "confidence": 5,
+        "reasoning": "Whole-clip caption per examples",
+        "source": "summary_from_sources"
+      }
+    ],
+    "action": [
+      {
+        "text": "crawl",
+        "start": 0.0,
+        "end": 4.367,
+        "confidence": 5,
+        "reasoning": "Atomic segment-level action",
+        "source": "babel_seg_id_or_equivalent"
+      }
+    ],
+      "left_arm": [
+        {
+          "text": "moving arms outward",
+          "start": 0.0,
+          "end": 1.979,
+          "confidence": 5,
+          "reasoning": "From BABEL annotation",
+          "source": "babel_06475_seg_3"
+        }
+      ]
+      // Repeat for all body parts("right_arm","trajectory","left_leg","right_leg","spine","head")
+    }
+}
+```
+
+**Note:**
+
+1. Each **body part** and **Action** must cover the full duration with no gaps
+2. Follow bilateral limb guidelines
+3. Use **"unknown"** with **confidence 1** when movements cannot be reasonably inferred
+4. Review **Special Cases and Common Mistakes to Avoid** to prevent similar errors
+
+If full annotation is complete add **"ANNOTATION COMPLETE"** at the end of the output, outside of json format
+
+**Input Data:**

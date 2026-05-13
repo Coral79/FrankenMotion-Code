@@ -1,0 +1,20 @@
+# @package __global__
+
+data:
+  text_encoder:
+    _target_: src.data.text_part.TextEmbeddings
+    base_dir: datasets/annotations/frankenstein-dataset/text_embeddings
+    dataname: ${dataset}
+    modelname: "clip"
+    device: ${device}
+    preload: true
+    mean_pooling: false
+    disable: false
+    nfeats: 512
+    pca: 51
+    fps: 20.0
+    body_part_order: ["action", "trajectory", "spine", "head", "left_arm", "right_arm", "left_leg", "right_leg"]
+    load_global: true
+    load_global_type: caption
+    rand_mask: true
+    mask_ratio: 0.5

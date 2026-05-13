@@ -1,0 +1,13 @@
+{
+    "duration": 4.0,
+    "sequence_caption": "unknown",
+    "body_parts": {
+        "left_leg":   [{"start": 0.0, "end": 4.0, "text": "sit"}],
+        "right_leg":  [{"start": 0.0, "end": 4.0, "text": "sit"}],
+        "left_arm":   [{"start": 0.0, "end": 4.0, "text": "unknown"}],
+        "right_arm":  [{"start": 0.0, "end": 4.0, "text": "unknown"}],
+        "head":       [{"start": 0.0, "end": 4.0, "text": "look up"}],
+        "spine":      [{"start": 0.0, "end": 4.0, "text": "unknown"}],
+        "trajectory": [{"start": 0.0, "end": 4.0, "text": "unknown"}]
+    }
+}
