@@ -5,7 +5,7 @@ ckpt: last
 motion_features: ${hydra:runtime.choices.motion_loader}
 text_features: ${hydra:runtime.choices.text_encoder}
 
-run_dir: outputs_amass/mdm-smpl_${text_features}_${motion_features}_${dataset}${run_suffix}
+run_dir: outputs_amass/frankenmotion_${text_features}_${motion_features}_${dataset}${run_suffix}
 run_suffix: ""
 
 dataloader:
@@ -18,7 +18,7 @@ dataset: frankenstein-dataset
 defaults:
   - text_encoder: clip_part
   - motion_loader: smplrifke
-  - mdm_smpl_part
+  - frankenmotion
   - trainer
   - defaults
   - _self_

@@ -23,7 +23,7 @@ diffusion:
   loss_type: WeightedMSE
 
   denoiser:
-    _target_: src.model.backbones.mdm_smpl_part.TransformerDenoiser
+    _target_: src.model.backbones.frankenmotion.TransformerDenoiser
     nfeats: 613
     tx_dim: ${data.text_encoder.nfeats}
     latent_dim: 512

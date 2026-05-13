@@ -245,7 +245,7 @@ Output lands under `pretrained/frankenmotion/generations/t2m/<json_basename>_fra
 | Batch size | 64 | `dataloader.batch_size=64` (override for smaller GPUs) |
 | Workers | 8 | `dataloader.num_workers=8` |
 | Epochs | 6000 | `trainer.max_epochs=6000` |
-| Optimizer | AdamW, lr 1e-4 | set in `configs/mdm_smpl_part.yaml` |
+| Optimizer | AdamW, lr 1e-4 | set in `configs/frankenmotion.yaml` |
 | Loss | WeightedMSE | `model.loss_type=WeightedMSELoss` |
 | Text encoder | CLIP ViT-B/32, 8-part body order, `rand_mask=true`, `mask_ratio=0.5` | set in `configs/text_encoder/clip_part.yaml` |
 | Motion features | smplrifke, 613-dim with global trajectory + action + head | set in `configs/motion_loader/smplrifke.yaml` |
@@ -266,7 +266,7 @@ This trains the model to convergence using the recommended setup above.
 
 ### Outputs
 
-`outputs_amass/mdm-smpl_clip_part_smplrifke_frankenstein-dataset/` contains:
+`outputs_amass/frankenmotion_clip_part_smplrifke_frankenstein-dataset/` contains:
 - `logs/checkpoints/{last,latest-epoch=*}.ckpt` — Lightning checkpoints
 - `motion_stats/{mean,std}.pt`, `text_stats/{mean,std}.pt` — normalisation stats (computed once on the train split, reused on resume)
 - `config.json` — the resolved Hydra config for the run
